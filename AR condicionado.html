@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ar condicionado</title>
+    <script>
+
+function calcularCustoServico(nomeEmpresa, valorPorAparelho, quantidadeAparelhos, percentualDesconto, quantidadeMinimaDesconto) {
+    // Cálculo do valor total do serviço
+    let totalServico = valorPorAparelho * quantidadeAparelhos;
+
+    // Aplicar desconto se a quantidade de aparelhos for maior ou igual à mínima
+    if (quantidadeAparelhos >= quantidadeMinimaDesconto) {
+        let desconto = (percentualDesconto / 100) * totalServico;
+        totalServico -= desconto;
+    }
+
+    // Exibir o custo do serviço
+    alert("O serviço de" +nomeEmpresa +" custará R$" +totalServico.toFixed(2));
+    return totalServico;
+}
+
+function verificarOrcamentos() {
+    let menorValor = Infinity;//Quando você usa let menorValor = Infinity;, está definindo menorValor para um valor inicial que é tão grande que qualquer número que você comparar com ele será menor. Isso é útil para algoritmos que precisam encontrar o menor valor em uma lista ou conjunto de números.
+    let nomeMenorEmpresa = "";
+    let continuar = 'S';
+
+    while (continuar.toUpperCase() === 'S') {
+        // Entrada de dados
+        let nomeEmpresa = prompt("Informe o nome da empresa:");
+        let valorPorAparelho = parseFloat(prompt("Informe o valor do serviço por aparelho:"));
+        let quantidadeAparelhos = parseInt(prompt("Informe a quantidade de aparelhos em manutenção:"));
+        let percentualDesconto = parseFloat(prompt("Informe o percentual de desconto:"));
+        let quantidadeMinimaDesconto = parseInt(prompt("Informe a quantidade mínima de aparelhos para o desconto:"));
+
+        // Calcular o custo total
+        let total = calcularCustoServico(nomeEmpresa, valorPorAparelho, quantidadeAparelhos, percentualDesconto, quantidadeMinimaDesconto);
+
+        // Verificar o menor valor
+        if (total < menorValor) {
+            menorValor = total;
+            nomeMenorEmpresa = nomeEmpresa;
+        }
+
+        // Perguntar se deseja continuar
+        continuar = prompt("Deseja informar novos dados? (S/N)");
+    }
+
+    // Exibir o orçamento de menor valor
+    alert("O orçamento de menor valor é o de " +nomeMenorEmpresa +" por R$ " +menorValor.toFixed(2));
+}
+
+// Executar o programa
+verificarOrcamentos();
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
